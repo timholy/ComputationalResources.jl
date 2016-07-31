@@ -134,7 +134,7 @@ OpenCLLibs() = OpenCLLibs(nothing)
 Request that an array computation be performed using tiles (blocks) of size `dims`.
 """
 immutable TileSize{N}
-    dims::Dims{N}
+    dims::NTuple{N,Int}
 end
 
 # Hold the available resources, allows packages to control loading of code
