@@ -33,7 +33,7 @@ abstract AbstractResource{T}
 An abstract type indicating that computation should be performed using
 the CPU.
 """
-abstract AbstractCPU{T}
+abstract AbstractCPU{T} <: AbstractResource{T}
 
 """
     CPU1()
