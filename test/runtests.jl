@@ -9,6 +9,7 @@ import Dummy1
 @test_throws MethodError Dummy1.foo(ArrayFireLibs())
 
 addresource(ArrayFireLibs)
+@test haveresource(ArrayFireLibs)
 
 reload("Dummy1")
 
@@ -23,5 +24,9 @@ reload("Dummy1")
 @test_throws MethodError Dummy1.foo(ArrayFireLibs())
 
 pop!(LOAD_PATH)
+
+@test isa(CPUThreads(), AbstractCPU{Void})
+@test isa(CUDALibs(), AbstractResource{Void})
+@test isa(OpenCLLibs(), AbstractResource{Void})
 
 nothing
