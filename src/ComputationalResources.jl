@@ -52,6 +52,7 @@ immutable CPU1{T} <: AbstractCPU{T}
     settings::T
 end
 CPU1() = CPU1(nothing)
+CPU1(r::AbstractResource) = CPU1(r.settings)
 
 """
     CPUThreads()
@@ -70,6 +71,7 @@ immutable CPUThreads{T} <: AbstractCPU{T}
     settings::T
 end
 CPUThreads() = CPUThreads(nothing)
+CPUThreads(r::AbstractResource) = CPUThreads(r.settings)
 
 """
     ArrayFireLibs()
@@ -88,6 +90,7 @@ immutable ArrayFireLibs{T} <: AbstractResource{T}
     settings::T
 end
 ArrayFireLibs() = ArrayFireLibs(nothing)
+ArrayFireLibs(r::AbstractResource) = ArrayFireLibs(r.settings)
 
 """
     CUDALibs()
@@ -106,6 +109,7 @@ immutable CUDALibs{T} <: AbstractResource{T}
     settings::T
 end
 CUDALibs() = CUDALibs(nothing)
+CUDALibs(r::AbstractResource) = CUDALibs(r.settings)
 
 """
     OpenCLLibs()
@@ -124,6 +128,7 @@ immutable OpenCLLibs{T} <: AbstractResource{T}
     settings::T
 end
 OpenCLLibs() = OpenCLLibs(nothing)
+OpenCLLibs(r::AbstractResource) = OpenCLLibs(r.settings)
 
 
 ### Settings
