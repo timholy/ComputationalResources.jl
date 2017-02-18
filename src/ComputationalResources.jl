@@ -2,6 +2,8 @@ __precompile__()
 
 module ComputationalResources
 
+using Compat
+
 export
     # Resources
     AbstractResource,
@@ -25,7 +27,7 @@ export
 
 The abstract supertype of all computational resources.
 """
-abstract AbstractResource{T}
+@compat abstract type AbstractResource{T} end
 
 """
     AbstractCPU
@@ -33,7 +35,7 @@ abstract AbstractResource{T}
 An abstract type indicating that computation should be performed using
 the CPU.
 """
-abstract AbstractCPU{T} <: AbstractResource{T}
+@compat abstract type AbstractCPU{T} <: AbstractResource{T} end
 
 """
     CPU1()
