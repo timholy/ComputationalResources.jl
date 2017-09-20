@@ -48,7 +48,7 @@ filter(CPU1(), image, kernel)
 filter(CPU1(TileSize(64,8)), image, kernel)
 ```
 """
-immutable CPU1{T} <: AbstractCPU{T}
+struct CPU1{T} <: AbstractCPU{T}
     settings::T
 end
 CPU1() = CPU1(nothing)
@@ -67,7 +67,7 @@ filter(CPUThreads(), image, kernel)
 filter(CPUThreads(TileSize(64,8)), image, kernel)
 ```
 """
-immutable CPUThreads{T} <: AbstractCPU{T}
+struct CPUThreads{T} <: AbstractCPU{T}
     settings::T
 end
 CPUThreads() = CPUThreads(nothing)
@@ -88,7 +88,7 @@ filter(CPUProcesses(), image, kernel)
 filter(CPUProcesses(TileSize(64,8)), image, kernel)
 ```
 """
-immutable CPUProcesses{T} <: AbstractCPU{T}
+struct CPUProcesses{T} <: AbstractCPU{T}
     settings::T
 end
 CPUProcesses() = CPUProcesses(nothing)
@@ -107,7 +107,7 @@ filter(ArrayFireLibs(), image, kernel)
 filter(ArrayFireLibs(backend), image, kernel)
 ```
 """
-immutable ArrayFireLibs{T} <: AbstractResource{T}
+struct ArrayFireLibs{T} <: AbstractResource{T}
     settings::T
 end
 ArrayFireLibs() = ArrayFireLibs(nothing)
@@ -126,7 +126,7 @@ filter(CUDALibs(), image, kernel)
 filter(CUDALibs(backend), image, kernel)
 ```
 """
-immutable CUDALibs{T} <: AbstractResource{T}
+struct CUDALibs{T} <: AbstractResource{T}
     settings::T
 end
 CUDALibs() = CUDALibs(nothing)
@@ -145,7 +145,7 @@ filter(OpenCLLibs(), image, kernel)
 filter(OpenCLLibs(backend), image, kernel)
 ```
 """
-immutable OpenCLLibs{T} <: AbstractResource{T}
+struct OpenCLLibs{T} <: AbstractResource{T}
     settings::T
 end
 OpenCLLibs() = OpenCLLibs(nothing)
@@ -159,7 +159,7 @@ OpenCLLibs(r::AbstractResource) = OpenCLLibs(r.settings)
 
 Request that an array computation be performed using tiles (blocks) of size `dims`.
 """
-immutable TileSize{N}
+struct TileSize{N}
     dims::NTuple{N,Int}
 end
 
@@ -173,7 +173,7 @@ Add `T` to the list of available resources. For example,
 `addresource(OpenCLLibs)` would indicate that you have a GPU and the
 OpenCL libraries installed.
 """
-addresource{T<:AbstractResource}(::Type{T}) = push!(resources, T)
+addresource(::Type{T}) where {T<:AbstractResource} = push!(resources, T)
 
 """
     rmresource(T)
@@ -182,7 +182,7 @@ Remove `T` from the list of available resources. For example,
 `rmresource(OpenCLLibs)` would indicate that any future package loads
 should avoid loading their specializations for OpenCL.
 """
-rmresource{T<:AbstractResource}(::Type{T}) = delete!(resources, T)
+rmresource(::Type{T}) where {T<:AbstractResource} = delete!(resources, T)
 
 """
     haveresource(T)
@@ -206,7 +206,7 @@ function __init__()
 end
 ```
 """
-haveresource{T<:AbstractResource}(::Type{T}) = T ∈ resources
+haveresource(::Type{T}) where {T<:AbstractResource} = T ∈ resources
 
 """
 ComputationalResources makes it possible to dispatch to different methods that employ different computational resources. The exported resources are:
