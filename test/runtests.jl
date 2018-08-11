@@ -1,5 +1,5 @@
 using ComputationalResources
-using Base.Test
+using Test
 
 for r in (CPU1(5), CPUThreads(5), ArrayFireLibs(5), CUDALibs(5), OpenCLLibs(5))
     for T in (CPU1, CPUThreads, ArrayFireLibs, CUDALibs, OpenCLLibs)
@@ -18,14 +18,16 @@ import Dummy1
 addresource(ArrayFireLibs)
 @test haveresource(ArrayFireLibs)
 
-reload("Dummy1")
+Base.unreference_module(Base.PkgId(Dummy1))
+Base.require(Base.PkgId(Dummy1))
 
 @test Dummy1.foo(CPU1())
 @test Dummy1.foo(ArrayFireLibs())
 
 rmresource(ArrayFireLibs)
 
-reload("Dummy1")
+Base.unreference_module(Base.PkgId(Dummy1))
+Base.require(Base.PkgId(Dummy1))
 
 @test Dummy1.foo(CPU1())
 @test_throws MethodError Dummy1.foo(ArrayFireLibs())

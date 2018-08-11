@@ -27,8 +27,8 @@ argument (conventionally, the first argument) to a function, where
 optionally store additional settings that you can customize; for
 example you could define a `TimeOut` type:
 
-```jl
-immutable TimeOut
+```julia
+struct TimeOut
     seconds::Float64
 end
 ```
@@ -88,7 +88,7 @@ test/
 where `...` means additional files. `Dummy.jl` might start like this:
 
 ```julia
-__precompile__()   # precompilation is allowed
+VERSION < v"0.7.0-beta2.199" && __precompile__()   # precompilation is allowed
 
 module Dummy
 
@@ -125,7 +125,7 @@ end
 Your `DummyAF` module is implemented in `DummyAF.jl`, which might look like this:
 
 ```julia
-__precompile__()
+VERSION < v"0.7.0-beta2.199" && __precompile__()()
 
 module DummyAF
 
