@@ -4,7 +4,8 @@ os:
   - linux
   - osx
 julia:
-  - 0.6
+  - 0.7
+  - 1.0
   - nightly
 notifications:
   email: false
@@ -14,4 +15,4 @@ notifications:
 #  - julia -e 'Pkg.clone(pwd()); Pkg.build("ComputationalResources"); Pkg.test("ComputationalResources"; coverage=true)'
 after_success:
   # push coverage results to Codecov
-  - julia -e 'cd(Pkg.dir("ComputationalResources")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
+  - julia -e 'using Pkg, ComputationalResources; cd(joinpath(pathof(ComputationalResources)), "..")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'
