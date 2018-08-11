@@ -88,8 +88,6 @@ test/
 where `...` means additional files. `Dummy.jl` might start like this:
 
 ```julia
-VERSION < v"0.7.0-beta2.199" && __precompile__()   # precompilation is allowed
-
 module Dummy
 
 using ComputationalResources
@@ -125,8 +123,6 @@ end
 Your `DummyAF` module is implemented in `DummyAF.jl`, which might look like this:
 
 ```julia
-VERSION < v"0.7.0-beta2.199" && __precompile__()()
-
 module DummyAF
 
 using ComputationalResources, Dummy, ArrayFire
