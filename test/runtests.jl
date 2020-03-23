@@ -3,14 +3,15 @@ using Test
 
 @testset "ComputationalResources" begin
     @testset "Settings" begin
-        for r in (CPU1(5), CPUThreads(5), ArrayFireLibs(5), CUDALibs(5), OpenCLLibs(5))
-            for T in (CPU1, CPUThreads, ArrayFireLibs, CUDALibs, OpenCLLibs)
+        for r in (CPU1(5), CPUThreads(5), CPUProcesses(5), ArrayFireLibs(5), CUDALibs(5), OpenCLLibs(5))
+            for T in (CPU1, CPUThreads, CPUProcesses, ArrayFireLibs, CUDALibs, OpenCLLibs)
                 r1 = T(r)
                 @test r1.settings === 5
             end
         end
 
         @test isa(CPUThreads(), AbstractCPU{Nothing})
+        @test isa(CPUProcesses(), AbstractCPU{Nothing})
         @test isa(CUDALibs(), AbstractResource{Nothing})
         @test isa(OpenCLLibs(), AbstractResource{Nothing})
     end
