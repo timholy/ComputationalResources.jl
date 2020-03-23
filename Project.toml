@@ -1,7 +1,7 @@
 name = "ComputationalResources"
 uuid = "ed09eef8-17a6-5b46-8889-db040fac31e3"
 authors = ["Tim Holy <tim.holy@gmail.com>"]
-version = "0.3.1"
+version = "0.3.2"
 
 [compat]
 julia = "0.7, 1"
