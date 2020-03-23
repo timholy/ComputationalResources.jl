@@ -17,6 +17,7 @@ This package exports the following types of resources:
 
 - CPU1 (single-threaded computation)
 - CPUThreads (multi-threaded computation)
+- CPUProcesses (multi-process computation)
 - ArrayFireLibs (using the [ArrayFire package](https://github.com/JuliaComputing/ArrayFire.jl))
 - CUDALibs (GPU computation using NVIDIA's CUDA libraries)
 - OpenCLLibs (GPU computation using the OpenCL libraries)

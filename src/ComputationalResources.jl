@@ -7,6 +7,7 @@ export
     ArrayFireLibs,
     CPU1,
     CPUThreads,
+    CPUProcesses,
     CUDALibs,
     OpenCLLibs,
     # Settings
@@ -211,6 +212,7 @@ ComputationalResources makes it possible to dispatch to different methods that e
 
 - `CPU1` (single-threaded computation)
 - `CPUThreads` (multi-threaded computation)
+- `CPUProcesses` (multi-process computation)
 - `ArrayFireLibs` (using the [ArrayFire package](https://github.com/JuliaComputing/ArrayFire.jl)
 - `CUDALibs` (GPU computation using NVIDIA's CUDA libraries)
 - `OpenCLLibs` (GPU computation using the OpenCL libraries)
